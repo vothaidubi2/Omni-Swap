@@ -12,7 +12,7 @@ const SignIn = () => {
   const origin = window.location.origin;
 
   let statement = "Sign in with Solana to the app.";
-
+  
   const [siwsMessage, setSiwsMessage] = useState<SIWS>();
   const [nonce, setNonce] = useState("");
   const [sign, setSignature] = useState("");

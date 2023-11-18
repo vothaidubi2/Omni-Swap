@@ -11,8 +11,10 @@ const Footer = () => {
                     className={"center discord-img"}
                 />
                 <p className={"discord-p"}>
-                    All rights reserved © Sol Kitties 2022
+                All rights reserved © Sol Kitties 2022
+                    
                 </p>
+   
             </Stack>
         
         </div>
