@@ -1,17 +1,36 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import JupiterApp from './components/Jupiter';
+import { ContextProvider } from './contexts/ContextProvider';
+import { ScreenProvider } from './contexts/ScreenProvider';
+import { TokenContextProvider } from './contexts/TokenContextProvider';
+import WalletPassthroughProvider from './contexts/WalletPassthroughProvider';
+import { Provider, useAtom } from 'jotai';
+import { appProps } from './library';
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const App = () => {
+  const [props] = useAtom(appProps);
+  if (!props) return null;
+
+  return (
+    <ContextProvider {...props}>
+      <WalletPassthroughProvider>
+        <TokenContextProvider {...props}>
+          <ScreenProvider>
+            <JupiterApp {...props} />
+          </ScreenProvider>
+        </TokenContextProvider>
+      </WalletPassthroughProvider>
+    </ContextProvider>
+  );
+};
+
+const RenderJupiter = () => {
+  return (
+    <Provider store={typeof window !== 'undefined' ? window.Jupiter.store : undefined}>
+      <App />
+    </Provider>
+  );
+};
+
+export { RenderJupiter };
