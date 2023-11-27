@@ -4,5 +4,7 @@
 ```
 NEXT_PUBLIC_CLUSTER=mainnet-beta
 ```
-3. `npm i` to install package
-4. `npm run dev` to run project
+
+3. `npm i` to install packages
+4. `npm run dev` to run this project
+
